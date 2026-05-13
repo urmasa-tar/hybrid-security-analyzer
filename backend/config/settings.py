@@ -1,13 +1,11 @@
-# backend/config/settings.py (временный упрощенный вариант)
+# backend/config/settings.py
 import os
 from pathlib import Path
-# from dotenv import load_dotenv
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-# load_dotenv()
 
-SECRET_KEY = 'very-secret-key-for-testing-only'
-DEBUG = True
+SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-key-for-dev')
+DEBUG = os.environ.get('DEBUG', 'True') == 'True'
 ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = [
@@ -19,10 +17,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'corsheaders',
-    'users',
-    'products',
-    'cart',
-    'analyzer',
+    'apps.users',
+    'apps.products',
+    'apps.cart',
+    'apps.analyzer',
 ]
 
 MIDDLEWARE = [
@@ -55,7 +53,6 @@ TEMPLATES = [
     },
 ]
 
-# Временная упрощенная база данных SQLite
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
