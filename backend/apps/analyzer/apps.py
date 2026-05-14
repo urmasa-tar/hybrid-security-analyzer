@@ -1,5 +1,5 @@
 from django.apps import AppConfig
 
-class UsersConfig(AppConfig):
+class AnalyzerConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'apps.users'
+    name = 'apps.analyzer'
