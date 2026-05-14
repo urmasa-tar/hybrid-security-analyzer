@@ -1,7 +1,25 @@
 from django.contrib import admin
 from django.urls import path, include
+from django.http import HttpResponse
+
+# Простая вьюшка для главной страницы
+def home_view(request):
+    return HttpResponse("""
+        <h1>Auto Parts Store API</h1>
+        <p>Сервер работает успешно!</p>
+        <p>Доступные эндпоинты:</p>
+        <ul>
+            <li><a href='/admin/'>/admin/</a> - панель администратора</li>
+            <li><a href='/api/users/register/'>/api/users/register/</a> - регистрация</li>
+            <li><a href='/api/users/login/'>/api/users/login/</a> - вход</li>
+            <li><a href='/api/products/'>/api/products/</a> - товары (SQLi уязвим)</li>
+            <li><a href='/api/analyze/'>/api/analyze/</a> - Security Analyzer</li>
+        </ul>
+        <p>⚠️ Приложение содержит уязвимости для демонстрации работы гибридного анализатора.</p>
+    """)
 
 urlpatterns = [
+    path('', home_view),  # ← главная страница
     path('admin/', admin.site.urls),
     path('api/users/', include('apps.users.urls')),
     path('api/products/', include('apps.products.urls')),
