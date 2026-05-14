@@ -1,10 +1,6 @@
-from django.contrib import admin
-from django.urls import path, include
+from django.urls import path
+from . import views
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('api/users/', include('apps.users.urls')),
-    path('api/products/', include('apps.products.urls')),
-    path('api/cart/', include('apps.cart.urls')),
-    path('api/analyze/', include('apps.analyzer.urls')),
+    path('', views.AnalyzeView.as_view(), name='analyze'),
 ]
